@@ -1,7 +1,5 @@
 import pandas as pd
 from pathlib import Path
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import IsolationForest
 from sklearn.metrics import classification_report, confusion_matrix
 from data_utils import prepare_data

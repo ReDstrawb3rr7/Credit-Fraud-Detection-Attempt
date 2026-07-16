@@ -1,8 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (precision_recall_curve, recall_score, confusion_matrix,f1_score, precision_score, average_precision_score)
 from data_utils import prepare_data
