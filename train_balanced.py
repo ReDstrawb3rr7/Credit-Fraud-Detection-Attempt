@@ -46,7 +46,7 @@ if __name__ == "__main__":
     print("\n1st approach: class weight = \"balanced\"")
     weighted_model = LogisticRegression(max_iter=1000, class_weight="balanced")
     weighted_model.fit(X_train, y_train)
-    print("\n")
+    print("\nWeighted Logistic Regression")
     evaluate_model(weighted_model, X_test, y_test)
 
 
@@ -60,6 +60,6 @@ if __name__ == "__main__":
     
     SMOTE_model = LogisticRegression(max_iter=1000)
     SMOTE_model.fit(X_train_smote, y_train_smote)
-    print("\n")
+    print("\nSMOTE")
     evaluate_model(SMOTE_model, X_test, y_test)
     

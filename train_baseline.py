@@ -59,8 +59,8 @@ if __name__ == "__main__":
 
     print("\nConfusion Matrix:")
     print("                     Predicted Normal    Predicted Fraud")
-    print(f"Actual Normal      {matrix[0][0]:>7}          {matrix[0][1]:>7}")
-    print(f"Actual Fraud       {matrix[1][0]:>7}          {matrix[1][1]:>7}")
+    print(f"Actual Normal      {matrix[0][0]}          {matrix[0][1]}")
+    print(f"Actual Fraud       {matrix[1][0]}          {matrix[1][1]}")
 
     fraud_found = matrix[1][1]
     fraud_missed = matrix[1][0]
