@@ -5,22 +5,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, confusion_matrix
 from imblearn.over_sampling import SMOTE
-
-credit_card_raw_data = Path(__file__).parent / "data" / "raw" / "creditcard.csv"
-
-def prepare_data():
-    df = pd.read_csv(credit_card_raw_data)
-    scaler = StandardScaler()
-    df["Amount"] = scaler.fit_transform(df[["Amount"]])
-    df["Time"] = scaler.fit_transform(df[["Time"]])
-
-    features = [column for column in df.columns if column.startswith("V")]
-
-    features += ["Amount", "Time"]
-
-    X = df[features]
-    y = df["Class"]
-    return train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)
+from data_utils import prepare_data
 
 def evaluate_model(model, X_test, y_test):
     predictions = model.predict(X_test)
@@ -48,7 +33,6 @@ if __name__ == "__main__":
     weighted_model.fit(X_train, y_train)
     print("\nWeighted Logistic Regression")
     evaluate_model(weighted_model, X_test, y_test)
-
 
 
     print("\n2nd approach: SMOTE oversampling")

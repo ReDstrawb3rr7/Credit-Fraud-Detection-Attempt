@@ -6,29 +6,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
     accuracy_score, confusion_matrix, classification_report,
 )
-
-credit_card_raw_data = Path(__file__).parent / "data" / "raw" / "creditcard.csv"
+from data_utils import prepare_data
 
 if __name__ == "__main__":
-    df = pd.read_csv(credit_card_raw_data)
-    scaler = StandardScaler()
-    df["Amount"] = scaler.fit_transform(df[["Amount"]])
-    df["Time"] = scaler.fit_transform(df[["Time"]])
+    X_train, X_test, y_train, y_test = prepare_data()
 
-    features = [column for column in df.columns if column.startswith("V")]
-
-    features += ["Amount", "Time"]
-
-    X = df[features]
-    y = df["Class"]
-
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.25, random_state=42, stratify=y
-    )
-
-    # print(X, "\n")
-    # print("next...............")
-    # print(y, "\n")
     print("Training examples:", len(X_train))
     print("Fraud examples in training:", y_train.sum())
 

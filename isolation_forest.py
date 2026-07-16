@@ -4,22 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import IsolationForest
 from sklearn.metrics import classification_report, confusion_matrix
-
-credit_card_raw_data = Path(__file__).parent / "data" / "raw" / "creditcard.csv"
-
-def prepare_data():
-    df = pd.read_csv(credit_card_raw_data)
-    scaler = StandardScaler()
-    df["Amount"] = scaler.fit_transform(df[["Amount"]])
-    df["Time"] = scaler.fit_transform(df[["Time"]])
-
-    features = [column for column in df.columns if column.startswith("V")]
-
-    features += ["Amount", "Time"]
-
-    X = df[features]
-    y = df["Class"]
-    return train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)
+from data_utils import prepare_data
 
 if __name__ == "__main__":
     X_train, X_test, y_train, y_test = prepare_data()

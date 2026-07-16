@@ -5,23 +5,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (precision_recall_curve, recall_score, confusion_matrix,f1_score, precision_score, average_precision_score)
+from data_utils import prepare_data
 
-credit_card_raw_data = Path(__file__).parent / "data" / "raw" / "creditcard.csv"
 pr_graph_path = Path(__file__).parent / "reports" / "pr_graph.png"
-
-def prepare_data():
-    df = pd.read_csv(credit_card_raw_data)
-    scaler = StandardScaler()
-    df["Amount"] = scaler.fit_transform(df[["Amount"]])
-    df["Time"] = scaler.fit_transform(df[["Time"]])
-
-    features = [column for column in df.columns if column.startswith("V")]
-
-    features += ["Amount", "Time"]
-
-    X = df[features]
-    y = df["Class"]
-    return train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)
 
 def threshold_evaluation(y_test, y_scores, threshold):
     print(f"Threshold = {threshold:.2f}")
